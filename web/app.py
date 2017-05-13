@@ -5,8 +5,10 @@ import flask
 
 
 app = flask.Flask(__name__)
+FORMAT = "%(levelname)s %(asctime)s %(message)s"
 log = logging.getLogger()
 file_logger = logging.FileHandler('/var/log/spa.log')
+file_logger.setFormatter(logging.Formatter(FORMAT))
 log.addHandler(file_logger)
 stdout_logger = logging.StreamHandler()
 log.addHandler(stdout_logger)
@@ -25,7 +27,7 @@ def home():
 @app.route('/logs/', methods=['GET'])
 def logs():
     with open('/var/log/spa.log', 'r') as log_file:
-        return ''.join(log_file.readlines())
+        return '<br>'.join(log_file.readlines())
 
 
 if __name__ == '__main__':
