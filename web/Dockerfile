@@ -8,7 +8,7 @@ COPY static/ \
      requirements.txt \
      ${APP_HOME}/
 
-WORKDIR /usr/src/app
+WORKDIR ${APP_HOME}
 RUN pip install --no-cache-dir -r requirements.txt
 
 RUN touch /var/log/spa.log
