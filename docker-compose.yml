@@ -1,5 +1,8 @@
 version: '2.0'
 services:
+  base:
+    build: .
+
   web:
     restart: always
     build: ./web
@@ -7,16 +10,9 @@ services:
       - "5000:5000"
     volumes:
       - ./web:/usr/src/app
-    command: /usr/local/bin/gunicorn --reload --log-level info -w 1 -b 0.0.0.0:5000 app:app
-#    networks:
-#      cloud:
-#        aliases:
-#          - web
+    command: gunicorn --reload --log-level info -w 1 -b 0.0.0.0:5000 app:app
+
   logs:
     restart: always
     build: ./logs
     command: curl -L http://web:5000/logs/
-
-#networks:
-#  cloud:
-#    driver: bridge
