@@ -3,8 +3,8 @@ services:
   web:
     restart: always
     build: ./web
-    expose:
-      - "5000"
+    ports:
+      - "5000:5000"
     volumes:
       - ./web:/usr/src/app
     command: /usr/local/bin/gunicorn --reload --log-level info -w 1 -b 0.0.0.0:5000 app:app
