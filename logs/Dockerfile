@@ -1,4 +1,4 @@
 FROM cloudcourseproject_base
 
 RUN apk update &&\
-  apk add bash curl openrc
+  apk add bash curl
